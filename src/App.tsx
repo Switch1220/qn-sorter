@@ -29,7 +29,7 @@ function App() {
     });
 
     socket.on("qn-update", (list) => {
-      setQns(sort(list ?? null));
+      setQns(sort(list ?? []));
     });
 
     socket.on("qn-clear", () => {
