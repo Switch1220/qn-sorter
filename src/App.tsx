@@ -58,9 +58,11 @@ function App() {
       return;
     } else {
       window.onfocus = () => {
-        setCursor((prev) => {
-          return Math.min(prev + 1, qns.length === 0 ? 0 : qns.length - 1);
-        });
+        if (canMoveNext) {
+          setCursor((prev) => {
+            return Math.min(prev + 1, qns.length === 0 ? 0 : qns.length - 1);
+          });
+        }
       };
     }
   }, [isModeActive]);
