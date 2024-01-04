@@ -59,7 +59,7 @@ function App() {
     } else {
       window.onfocus = () => {
         setCursor((prev) => {
-          return Math.min(prev + 1, qns.length - 1);
+          return Math.min(prev + 1, qns.length === 0 ? 0 : qns.length - 1);
         });
       };
     }
@@ -103,7 +103,9 @@ function App() {
     e.preventDefault();
 
     if (canMoveNext) {
-      setCursor((prevCursor) => Math.min(prevCursor + 1, qns.length - 1));
+      setCursor((prevCursor) =>
+        Math.min(prevCursor + 1, qns.length === 0 ? 0 : qns.length - 1)
+      );
     }
   };
 
