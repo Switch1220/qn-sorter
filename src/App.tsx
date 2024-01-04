@@ -108,7 +108,7 @@ function App() {
   };
 
   const onCheckedChange = (checked: boolean) => {
-    setIsModeActive((prev) => !prev);
+    setIsModeActive(checked);
   };
 
   return (
