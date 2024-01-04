@@ -115,35 +115,35 @@ function App() {
 
   return (
     <div className="h-screen flex flex-col items-center lg:justify-center bg-background">
-      <main className="m-10 flex flex-col lg:flex-row justify-between gap-20 lg:w-2/3">
-        <div className="flex flex-col lg:w-5/12">
-          {qns.length === 0 ? (
+      <main className="m-10 flex flex-col lg:flex-row justify-between gap-20 w-4/5 lg:w-2/3">
+        {qns.length === 0 ? (
+          <div className="lg:w-5/12">
             <h1 className="text-4xl font-extrabold tracking-tight lg:text-6xl">
-              문제의 번호들을 추가하세요
+              문제번호를 추가하세요
             </h1>
-          ) : (
-            <div>
-              <h1 className="text-4xl font-extrabold tracking-tight lg:text-6xl">
-                Up Next
-              </h1>
+          </div>
+        ) : (
+          <div className="flex flex-col items-center lg:items-start lg:w-5/12">
+            <h1 className="text-4xl font-extrabold tracking-tight lg:text-6xl">
+              Up Next
+            </h1>
 
-              <Nav cursor={cursor} qns={qns} />
+            <Nav cursor={cursor} qns={qns} />
 
-              <div className="mt-4">
-                {qns.map((qn, i) => (i !== qns.length - 1 ? qn + ", " : qn))}
-              </div>
-
-              <div className="mt-5 flex flex-row gap-1">
-                <Button onClick={onPrev} disabled={!canMovePrev}>
-                  Prev
-                </Button>
-                <Button onClick={onNext} disabled={!canMoveNext}>
-                  Next
-                </Button>
-              </div>
+            <div className="mt-4">
+              {qns.map((qn, i) => (i !== qns.length - 1 ? qn + ", " : qn))}
             </div>
-          )}
-        </div>
+
+            <div className="mt-5 mr-auto flex flex-row gap-1">
+              <Button onClick={onPrev} disabled={!canMovePrev}>
+                Prev
+              </Button>
+              <Button onClick={onNext} disabled={!canMoveNext}>
+                Next
+              </Button>
+            </div>
+          </div>
+        )}
 
         <div className="flex flex-col lg:w-5/12">
           <Progress value={(cursor / (qns.length - 1)) * 100} />
@@ -197,7 +197,7 @@ function Nav({ cursor, qns }: { cursor: number; qns: number[] }) {
   }, [cursor, qns]);
 
   return (
-    <section className="grid grid-cols-5 place-items-center mt-4 mr-24 backdrop-blur-md bg-black/10 px-8 py-5 rounded-full">
+    <section className="grid grid-cols-5 place-items-center mt-4 backdrop-blur-md bg-black/10 px-8 py-5 rounded-full w-full">
       <p className="text-2xl text-primary text-opacity-80 tracking-tight transition-colors">
         {prev}
       </p>
