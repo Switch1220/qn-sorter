@@ -65,7 +65,7 @@ function App() {
         }
       };
     }
-  }, [isModeActive]);
+  }, [canMoveNext, isModeActive]);
 
   const onAdd: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
