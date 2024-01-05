@@ -14,7 +14,7 @@ import {
 } from "react";
 
 import "@src/styles/globals.css";
-import { Switch } from "@/components/ui/Switch";
+import { Switch } from "@/components/ui/switch";
 
 const parseText = (text: string) =>
   text
