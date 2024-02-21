@@ -120,7 +120,7 @@ function App() {
     <div className="h-screen flex flex-col items-center lg:justify-center bg-background">
       <main className="m-10 flex flex-col lg:flex-row gap-20 w-4/5 lg:w-2/3">
         {qns.length === 0 ? (
-          <div className="flex items-center justify-center lg:w-7/12">
+          <div className="mt-14 lg:mt-0 flex items-center justify-center lg:w-7/12">
             <h1 className="break-keep text-center text-4xl font-extrabold tracking-tight lg:text-6xl">
               문제번호를 추가하세요
             </h1>
