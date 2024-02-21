@@ -15,6 +15,7 @@ import {
 
 import "@src/styles/globals.css";
 import { Switch } from "@/components/ui/Switch";
+import { QNumber } from "@/components/QNumber";
 
 const parseText = (text: string) =>
   text
@@ -117,15 +118,15 @@ function App() {
 
   return (
     <div className="h-screen flex flex-col items-center lg:justify-center bg-background">
-      <main className="m-10 flex flex-col lg:flex-row justify-between gap-20 w-4/5 lg:w-2/3">
+      <main className="m-10 flex flex-col lg:flex-row gap-20 w-4/5 lg:w-2/3">
         {qns.length === 0 ? (
-          <div className="lg:w-5/12">
-            <h1 className="text-4xl font-extrabold tracking-tight lg:text-6xl">
+          <div className="flex items-center justify-center lg:w-7/12">
+            <h1 className="break-keep text-center text-4xl font-extrabold tracking-tight lg:text-6xl">
               문제번호를 추가하세요
             </h1>
           </div>
         ) : (
-          <div className="flex flex-col items-center lg:items-start lg:w-5/12">
+          <div className="flex flex-col items-center lg:items-start lg:w-7/12">
             <h1 className="text-4xl font-extrabold tracking-tight lg:text-6xl">
               Up Next
             </h1>
@@ -150,20 +151,18 @@ function App() {
         <div className="flex flex-col lg:w-5/12">
           <Progress value={(cursor / (qns.length - 1)) * 100} />
 
-          {/* <h2 className="scroll-m-20 text-xl font-semibold tracking-tight">
-            Enter question numbers
-          </h2> */}
           <Textarea
             className="mt-2 h-2/5"
             placeholder="Enter copied kakaotalk chat or numbers."
             onChange={onTextChange}
             value={text}
           />
+
           <Button className="mt-3" onClick={onAdd}>
             Add
           </Button>
 
-          <Button className="mt-2" onClick={onClear}>
+          <Button className="mt-1" onClick={onClear} variant="outline">
             Clear
           </Button>
 
@@ -199,50 +198,39 @@ function Nav({ cursor, qns }: { cursor: number; qns: number[] }) {
   }, [cursor, qns]);
 
   return (
-    <section className="grid grid-cols-5 place-items-center mt-4 backdrop-blur-md bg-black/10 px-8 py-5 rounded-full w-full">
-      <p className="text-2xl text-primary text-opacity-80 tracking-tight transition-colors">
+    <section className="grid grid-cols-11 place-items-center mt-4 backdrop-blur-md bg-black/10 px-8 py-5 rounded-full w-full">
+      <QNumber className="col-span-3" variant="small">
         {prev}
-      </p>
-      {prev === null ? (
-        <div />
-      ) : (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="lucide lucide-chevron-right"
-        >
-          <polyline points="9 18 15 12 9 6"></polyline>
-        </svg>
-      )}
-      <p className="text-5xl font-black tracking-tight transition-colors">
-        {current ?? <div />}
-      </p>
-      {next === null ? (
-        <div />
-      ) : (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="lucide lucide-chevron-right"
-        >
-          <polyline points="9 18 15 12 9 6"></polyline>
-        </svg>
-      )}
-      <p className="text-2xl tracking-tight transition-colors">{next}</p>
+      </QNumber>
+
+      {prev === null ? <div /> : <ChevronIcon />}
+
+      <QNumber className="col-span-3">{current ?? <div />}</QNumber>
+
+      {next === null ? <div /> : <ChevronIcon />}
+
+      <QNumber className="col-span-3" variant="small">
+        {next}
+      </QNumber>
     </section>
+  );
+}
+
+function ChevronIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="lucide lucide-chevron-right"
+    >
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
   );
 }
