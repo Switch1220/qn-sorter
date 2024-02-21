@@ -138,11 +138,15 @@ function App() {
             </div>
 
             <div className="mt-5 mr-auto flex flex-row gap-1">
-              <Button onClick={onPrev} disabled={!canMovePrev}>
-                Prev
+              <Button
+                onClick={onPrev}
+                disabled={!canMovePrev}
+                variant="outline"
+              >
+                <ChevronLeftIcon />
               </Button>
               <Button onClick={onNext} disabled={!canMoveNext}>
-                Next
+                <ChevronRightIcon />
               </Button>
             </div>
           </div>
@@ -152,13 +156,13 @@ function App() {
           <Progress value={(cursor / (qns.length - 1)) * 100} />
 
           <Textarea
-            className="mt-2 h-2/5"
+            className="mt-1 h-3/5"
             placeholder="Enter copied kakaotalk chat or numbers."
             onChange={onTextChange}
             value={text}
           />
 
-          <Button className="mt-3" onClick={onAdd}>
+          <Button className="mt-1" onClick={onAdd}>
             Add
           </Button>
 
@@ -203,11 +207,11 @@ function Nav({ cursor, qns }: { cursor: number; qns: number[] }) {
         {prev}
       </QNumber>
 
-      {prev === null ? <div /> : <ChevronIcon />}
+      {prev === null ? <div /> : <ChevronRightIcon />}
 
       <QNumber className="col-span-3">{current ?? <div />}</QNumber>
 
-      {next === null ? <div /> : <ChevronIcon />}
+      {next === null ? <div /> : <ChevronRightIcon />}
 
       <QNumber className="col-span-3" variant="small">
         {next}
@@ -216,7 +220,7 @@ function Nav({ cursor, qns }: { cursor: number; qns: number[] }) {
   );
 }
 
-function ChevronIcon() {
+function ChevronRightIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -231,6 +235,25 @@ function ChevronIcon() {
       className="lucide lucide-chevron-right"
     >
       <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  );
+}
+
+function ChevronLeftIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      className="lucide lucide-chevron-left"
+    >
+      <path d="m15 18-6-6 6-6" />
     </svg>
   );
 }
